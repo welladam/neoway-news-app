@@ -71,7 +71,7 @@ export default {
           ? await apiClient.removeFavoriteArticle(article)
           : await apiClient.addFavoriteArticle(article)
       } catch (error) {
-        showErrorToast(error)
+        showErrorToast(error.message)
       }
     },
     fetchPostDetail() {
@@ -92,7 +92,7 @@ export default {
           ]
         })
         .catch((error) => {
-          showErrorToast(error)
+          showErrorToast(error.message)
         })
         .finally(() => {
           this.isLoading = false
@@ -106,7 +106,7 @@ export default {
           this.sourceArticles = result.data.articles
         })
         .catch((error) => {
-          showErrorToast(error)
+          showErrorToast(error.message)
         })
         .finally(() => {
           this.isPostsSourceLoading = false

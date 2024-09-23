@@ -64,7 +64,7 @@ export default {
           this.allArticlesFiltered = result.data.articles
         })
         .catch((error) => {
-          showErrorToast(error)
+          showErrorToast(error.message)
         })
         .finally(() => {
           this.isAllNewsLoading = false
@@ -78,7 +78,8 @@ export default {
           this.topArticles = result.data.articles
         })
         .catch((error) => {
-          showErrorToast(error)
+          console.log('error', error)
+          showErrorToast(error.message)
         })
         .finally(() => {
           this.isTopNewsLoading = false

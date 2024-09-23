@@ -42,7 +42,7 @@ export default {
           ? await apiClient.removeFavoriteArticle(article)
           : await apiClient.addFavoriteArticle(article)
       } catch (error) {
-        showErrorToast(error)
+        showErrorToast(error.message)
       }
     },
   },

@@ -2,9 +2,10 @@ import axios from 'axios'
 import store from '@/store'
 import { setupCache } from 'axios-cache-interceptor'
 
+const proxyUrl = process.env.VUE_APP_PROXY_URL || ''
 const apiClient = setupCache(
   axios.create({
-    baseURL: `${process.env.VUE_APP_NEWS_API_URL}/`,
+    baseURL: `${proxyUrl}${process.env.VUE_APP_NEWS_API_URL}/`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.VUE_APP_NEWS_API_KEY}`,
