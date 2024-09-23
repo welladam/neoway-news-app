@@ -1,19 +1,18 @@
 module.exports = {
   content: [
-    './src/**/*.{html,js,vue}', // Ajuste conforme a estrutura do projeto
+    './src/**/*.{html,js,vue}',
   ],
   theme: {
     extend: {
       colors: {
-        // Cores principais do design
-        primary: '#FF4400', // Para títulos e o logo
-        secondary: '#F3F4F6', // Para fundos de elementos, como os cards
-        accent: '#6C63FF', // Para tags e elementos de destaque
-        text: '#333333', // Cor do texto principal
-        background: '#FFFFFF', // Fundo da aplicação
+        primary: '#FF4400',
+        secondary: '#F3F4F6',
+        accent: '#6C63FF',
+        text: '#333333',
+        background: '#FFFFFF',
       },
       fontFamily: {
-        sans: ['Inter', 'Arial', 'sans-serif'], // Família de fontes similar à da imagem
+        sans: ['Inter', 'Arial', 'sans-serif'],
       },
       screens: {
         sm: '640px',

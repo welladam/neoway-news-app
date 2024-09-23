@@ -23,6 +23,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 
 <script>
 import apiClient from '@/api/axios'
+import { showErrorToast } from '@/helpers/toastErrorHelper'
 import { InputText, SectionTitle } from '@/components/atoms'
 import { TagList } from '@/components/molecules'
 import { MainContainer } from '@/components/organisms'
@@ -63,7 +64,7 @@ export default {
           this.allArticlesFiltered = result.data.articles
         })
         .catch((error) => {
-          console.log('error', error)
+          showErrorToast(error)
         })
         .finally(() => {
           this.isAllNewsLoading = false
@@ -74,11 +75,10 @@ export default {
       apiClient
         .getNewsByCategory(code)
         .then(async (result) => {
-          console.log('result', result)
           this.topArticles = result.data.articles
         })
         .catch((error) => {
-          console.log('error', error)
+          showErrorToast(error)
         })
         .finally(() => {
           this.isTopNewsLoading = false

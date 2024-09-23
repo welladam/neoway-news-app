@@ -34,37 +34,15 @@ export default {
     return apiClient.get(`everything?language=en&sources=${source}&from=${from}&to=${to}`)
   },
   async addFavoriteArticle(article) {
-    try {
-      await store.dispatch('addToFavorites', article)
-      return { success: true }
-    } catch (error) {
-      console.error('error', error)
-      throw error
-    }
+    await store.dispatch('addToFavorites', article)
   },
   async removeFavoriteArticle(article) {
-    try {
-      await store.dispatch('removeFromFavorites', article)
-      return { success: true }
-    } catch (error) {
-      console.error('error', error)
-      throw error
-    }
+    await store.dispatch('removeFromFavorites', article)
   },
   isFavoriteArticle(article) {
-    try {
-      return store.getters.isFavorite(article)
-    } catch (error) {
-      console.error('error', error)
-      throw error
-    }
+    return store.getters.isFavorite(article)
   },
   getAllFavoriteArticles() {
-    try {
-      return store.getters.getFavorites
-    } catch (error) {
-      console.error('error', error)
-      throw error
-    }
+    return store.getters.getFavorites
   },
 }

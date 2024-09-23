@@ -4,12 +4,8 @@
     <div v-else class="flex flex-col gap-8">
       <div class="flex justify-between items-center gap-8">
         <Breadcrumb :breadcrumbs="breadcrumbs" />
-        <DynamicButton
-          :class="isFavorite && 'text-primary'"
-          :label="isFavorite ? 'Unfavorite' : 'Favorite'"
-          :icon="isFavorite ? BookmarkSolidIcon : BookmarkIcon"
-          @click="handleFavoriteClick"
-        />
+        <DynamicButton :class="isFavorite && 'text-primary'" :label="isFavorite ? 'Unfavorite' : 'Favorite'"
+          :icon="isFavorite ? BookmarkSolidIcon : BookmarkIcon" @click="handleFavoriteClick" />
       </div>
       <div class="flex flex-col w-full gap-20 mb-14">
         <PostCard :article="article" />
@@ -30,6 +26,7 @@ import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/vue/24/solid'
 
 <script>
 import apiClient from '@/api/axios'
+import { showErrorToast } from '@/helpers/toastErrorHelper'
 import { Breadcrumb, DynamicButton, SectionTitle } from '@/components/atoms'
 import { PostCard, PostCardSkeleton } from '@/components/molecules'
 import { MainContainer } from '@/components/organisms'
@@ -44,6 +41,14 @@ export default {
     PostCard,
     PostCardSkeleton,
     SectionTitle,
+  },
+  props: {
+    source: {
+      type: String,
+    },
+    timestamp: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -61,12 +66,12 @@ export default {
       this.updateFavoriteArticle(this.article)
     },
     async updateFavoriteArticle(article) {
-      const result = article.isFavorite
-        ? await apiClient.removeFavoriteArticle(article)
-        : await apiClient.addFavoriteArticle(article)
-      if (!result.success) {
-        console.log('error favorite')
-        return
+      try {
+        article.isFavorite
+          ? await apiClient.removeFavoriteArticle(article)
+          : await apiClient.addFavoriteArticle(article)
+      } catch (error) {
+        showErrorToast(error)
       }
     },
     fetchPostDetail() {
@@ -87,7 +92,7 @@ export default {
           ]
         })
         .catch((error) => {
-          console.log('eerror', error)
+          showErrorToast(error)
         })
         .finally(() => {
           this.isLoading = false
@@ -101,7 +106,7 @@ export default {
           this.sourceArticles = result.data.articles
         })
         .catch((error) => {
-          console.log('error', error)
+          showErrorToast(error)
         })
         .finally(() => {
           this.isPostsSourceLoading = false

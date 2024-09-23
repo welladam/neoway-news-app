@@ -1,18 +1,14 @@
 <template>
   <ArticleListSkeleton v-if="isLoading" />
-  <ArticleList
-    v-else
-    :articles="formatArticles"
-    @article-clicked="handleArticleClick"
-    @favorite-clicked="handleFavoriteClick"
-    :cardsSize="cardsSize"
-  />
+  <ArticleList v-else :articles="formatArticles" @article-clicked="handleArticleClick"
+    @favorite-clicked="handleFavoriteClick" :cardsSize="cardsSize" />
 </template>
 
 <script>
 import { getUnixTime } from 'date-fns'
 import apiClient from '@/api/axios'
 import { formatArticleList } from '@/helpers/articleHelper'
+import { showErrorToast } from '@/helpers/toastErrorHelper'
 import { ArticleListSkeleton, ArticleList } from '@/components/organisms'
 
 export default {
@@ -41,11 +37,12 @@ export default {
       this.$router.push(`/post/${article.source.id}/${timestamp}`)
     },
     async handleFavoriteClick(article) {
-      const result = article.isFavorite
-        ? await apiClient.removeFavoriteArticle(article)
-        : await apiClient.addFavoriteArticle(article)
-      if (!result.success) {
-        console.log('error favorite')
+      try {
+        article.isFavorite
+          ? await apiClient.removeFavoriteArticle(article)
+          : await apiClient.addFavoriteArticle(article)
+      } catch (error) {
+        showErrorToast(error)
       }
     },
   },
