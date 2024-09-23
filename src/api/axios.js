@@ -9,10 +9,7 @@ const apiClient = setupCache(
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.VUE_APP_NEWS_API_KEY}`,
     },
-  }),
-  {
-    cacheTakeover: false,
-  }
+  })
 )
 
 export default {
