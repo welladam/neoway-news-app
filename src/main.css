@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-xl lg:text-3xl font-bold text-gray-800;
+  }
+
+  h2 {
+    @apply text-xl lg:text-2xl font-bold text-gray-800;
+  }
+
+  p {
+    @apply text-lg lg:text-xl text-gray-600;
+  }
+
+  span {
+    @apply text-base lg:text-lg text-gray-600;
+  }
+}
