@@ -4,6 +4,7 @@ import { ArticleCard } from '@/components/molecules'
 
 jest.mock('@/assets/placeholder-image.webp', () => 'mocked-image-path')
 jest.mock('@/assets/github-icon.png', () => 'mocked-image-path')
+jest.mock('@/assets/no-data.png', () => 'mocked-image-path')
 
 describe('Organism - ArticleList', () => {
     let wrapper
