@@ -4,6 +4,9 @@
 
 This is a Vue.js project utilizing **Tailwind CSS**, **Axios** for API requests, and follows the **Atomic Design** pattern for component organization. The project features multiple views, including a news listing, post details, and favorite posts, with a dynamic and responsive layout.
 
+**Figma design** was used to create the UI. Pixel perfect was not followed, but it gave a good idea of ​​how to create each component and structure.
+https://www.figma.com/design/Eager9yOAzDbmp2Wmj4pI1/Free-News-%26-Magazine-Figma-Template-%2F-All-pages-(Community)-(Copy)?node-id=17-11&t=3PAOE50XwIKaMvLW-1
+
 ## Features
 
 - Dynamic news fetching from an external API.
@@ -12,6 +15,7 @@ This is a Vue.js project utilizing **Tailwind CSS**, **Axios** for API requests,
 - Responsive design with Tailwind CSS.
 - Skeleton loaders for smooth user experience during data fetching.
 - Favorite articles management.
+- Toasts to handle errors.
 - Unit tests for some components.
 
 ## Project
